@@ -10,17 +10,21 @@ Migrate multiple git repositories to a new remote
 ## Usage
 ```
 # path/to/git_remote_migration.py --help
-usage: git_remote_migration.py [-h] -p PATTERN -r REPLACEMENT [directory]
+usage: git_remote_migration.py [-h] -p REGEXP -r REPLACEMENT [directory]
+
+Bulk migrate git remotes.
 
 positional arguments:
-  directory             Directory to scan for repositories. Default is the current directory.
+  directory             directory to scan for repositories, default's to the current directory
 
 optional arguments:
   -h, --help            show this help message and exit
-  -p PATTERN, --pattern PATTERN
-                        Replacement pattern, with support for regular expressions.
+
+mandatory arguments:
+  -p REGEXP, --pattern REGEXP
+                        replacement pattern, supports regular expressions
   -r REPLACEMENT, --replace REPLACEMENT
-                        Value to replace the matched pattern
+                        value to replace the matched pattern with
 ```
 
 ## Example
