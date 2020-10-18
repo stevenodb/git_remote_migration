@@ -1,5 +1,5 @@
 # git_remote_migration
-Migrate multiple git repositories to a new remote
+Bulk migrate git repositories to a new remote
 
 ## Setup
 1. Install python (and pip) 3.7+ on your operating system of choice
