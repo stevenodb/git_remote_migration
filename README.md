@@ -30,7 +30,7 @@ mandatory arguments:
 ## Example
 ```
 # cd path/with/repositories
-# path/to/git_remote_migration.py . --pattern git@bitbucket.org --replace git@github.com:
+# path/to/git_remote_migration.py --pattern git@bitbucket.org --replace git@github.com: path/to/repositories
 ```
 
 Follow instructions.
