@@ -32,20 +32,22 @@ def scan_repositories(directory: AnyStr) -> List[DirEntry]:
 
 
 def evaluate_arguments() -> Namespace:
-    parser = ArgumentParser()
+    parser = ArgumentParser(description="Bulk migrate git remotes.")
     parser.add_argument("directory",
+                        type=str,
                         nargs='?',
                         default=os.getcwd(),
-                        help="Directory to scan for repositories. Default is the current directory.")
-
-    parser.add_argument("-p", "--pattern",
-                        required=True,
-                        dest="pattern",
-                        help="Replacement pattern, with support for regular expressions.")
-    parser.add_argument("-r", "--replace",
-                        required=True,
-                        dest="replacement",
-                        help="Value to replace the matched pattern")
+                        help="directory to scan for repositories, default's to the current directory")
+    required = parser.add_argument_group("mandatory arguments")
+    required.add_argument('-p', '--pattern',
+                          required=True,
+                          dest='pattern',
+                          metavar='REGEXP',
+                          help="replacement pattern, supports regular expressions")
+    required.add_argument('-r', '--replace',
+                          required=True,
+                          dest='replacement',
+                          help="value to replace the matched pattern with")
     return parser.parse_args()
 
 
@@ -129,8 +131,7 @@ def main():
     transformations = prepare_transformations(repos, options.pattern, options.replacement)
     print_table(transformations)
 
-    print("================================================================================================\n")
-
+    print("")
     if not input("Migrate repositories? (type 'yes' to continue)\n[yes/NO]: ").lower().strip() == "yes":
         print("Aborted.")
         sys.exit(1)
